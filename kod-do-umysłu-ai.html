@@ -1,0 +1,3889 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOD DO UMYSŁU AI</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠️</text></svg>">
+    <style>
+        :root {
+            --xtb-black: #050505;
+            --light-black: rgba(255, 255, 255, 0.05);
+            --gold: #FFD700;
+            --c-color-costar: #FF3E3E;
+            --o-color-costar: #FF9F1C;
+            --s-color-costar: #CBFF4D;
+            --t-color-costar: #4DEEE1;
+            --a-color-costar: #BD00FF;
+            --r-color-costar: #00FF73;
+            --text-code: #008000;
+
+            --r-color-risen: #00D4FF; /* Cyan */
+            --i-color-risen: #FF007A; /* Pink */
+            --s-color-risen: #00FFCC; /* Mint */
+            --e-color-risen: #FFD700; /* Gold */
+            --n-color-risen: #9D00FF; /* Purple */
+        }
+
+        html, body {
+            overflow: hidden;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--xtb-black);
+            color: #FFFFFF;
+        }
+
+        .fixed-logo {
+            position: fixed;
+            top: 40px;
+            right: 60px;
+            z-index: 9999;
+        }
+
+        .fixed-logo img {
+            height: 55px;
+        }
+
+        /* SIDEBAR */
+        #sidebar {
+            position: fixed;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            padding: 10px;
+
+            /* 🔥 glass effect */
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            border-radius: 14px;
+
+            z-index: 1000;
+        }
+
+        /* BUTTONY */
+        .menu-item {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+
+            font-size: 13px;
+            cursor: pointer;
+
+            transition: 0.2s ease;
+            user-select: none;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .menu-item.active {
+            background: rgba(34, 197, 94, 0.85);
+        }
+
+        /* Każdy slajd na cały ekran */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            /*flex-shrink: 0;*/
+
+            /* KLUCZ DO WYŚRODKOWANIA: */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Przyciski w rogu */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 10000;
+        }
+
+        .nav-buttons button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .nav-buttons button:hover {
+            background: var(--gold);
+            color: black;
+        }
+
+        /* Multi-color Title */
+        .title-tag {
+            display: inline-block;
+
+            padding: 6px 14px;
+            margin-bottom: 20px;
+
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+
+            color: #ffffffcc;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .hero {
+            text-align: center;
+            margin: 60px 0 20px 0;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 9rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+        }
+
+        .t-c {
+            color: var(--c-color-costar);
+        }
+
+        .t-o {
+            color: var(--o-color-costar);
+        }
+
+        .t-s {
+            color: var(--s-color-costar);
+        }
+
+        .t-t {
+            color: var(--t-color-costar);
+        }
+
+        .t-a {
+            color: var(--a-color-costar);
+        }
+
+        .t-r {
+            color: var(--r-color-costar);
+        }
+
+        .t-dash {
+            color: #fff;
+            margin: 0 10px;
+        }
+
+        .full-banner {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.15) 50%, rgba(255, 215, 0, 0.05) 100%);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            z-index: 1;
+        }
+
+        .full-banner h2 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            padding-bottom: 5px;
+        }
+
+        .full-banner h3 {
+            color: #00FF73;;
+            font-size: 1.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            padding-bottom: 20px;
+        }
+
+        .origin-info {
+            margin-top: 10px;
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .origin-info a {
+            color: #ccc;
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+            text-decoration-color: #22c55e;
+        }
+
+        .origin-info a:hover {
+            color: #15803d; /* ciemniejsza zieleń */
+            text-decoration-color: #15803d;
+        }
+
+        .container {
+            width: 100%; /* Wymusza na kontenerze zajęcie całej dostępnej szerokości */
+            max-width: 1400px; /* Twoja oryginalna szerokość */
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #111;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #222;
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: scale(1.3);
+            z-index: 10;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .big-letter {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 0.8;
+        }
+
+        .titles-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 5rem;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 2px;
+            text-transform: lowercase;
+            font-style: italic;
+            color: #FFFFFF;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .example-content-box h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .example-content-box p {
+            margin: 8px 0 0 0;
+            color: #aaa;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .final-prompt-section pre {
+            margin: 0;
+            white-space: normal;
+            color: var(--gold);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Stabilizacja Slajdu 2 */
+        .slide-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Zmieniamy na start, by góra była stała */
+            align-items: center;
+            padding-top: 100px; /* Miejsce na logo i odstęp */
+            box-sizing: border-box;
+        }
+
+        /* Menu zakładek przyczepione do góry kontenera */
+        .tabs-wrapper {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            max-width: 1100px;
+            background: var(--xtb-black);
+            padding: 20px 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tab-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #222;
+            color: #777;
+            padding: 10px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-link.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(244, 196, 48, 0.2);
+        }
+
+        /* Kontener treści - zapobiega skakaniu */
+        .tab-content-container {
+            width: 100%;
+            max-width: 1100px;
+
+            height: calc(80vh - 180px); /* mniej agresywne, zostawia więcej przestrzeni */
+            margin-top: 10px;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 0;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeIn 0.4s ease;
+
+            flex: 1;
+            min-height: 0;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .code-color {
+            color: var(--text-code);
+        }
+
+        /* Karty listy (Twoja ulubiona struktura) */
+        .card-list {
+            background: #111;
+            border: 1px solid #222;
+            padding: 12px 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .card-list:hover {
+            background: #161616;
+            z-index: 5;
+        }
+
+        .list-letter {
+            font-size: 2.5rem;
+            font-weight: 900;
+            width: 45px;
+            flex-shrink: 0;
+        }
+
+        .list-titles {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 150px;
+        }
+
+        .w-200 {
+            width: 200px;
+        }
+
+        .w-300 {
+            width: 300px;
+        }
+
+        .w-400 {
+            width: 400px;
+        }
+
+        .list-titles h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .list-titles span {
+            font-size: 0.8rem;
+            color: #fff;
+            opacity: 0.5;
+            margin-top: 2px;
+        }
+
+        .list-desc {
+            flex-grow: 1;
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            border-left: 1px solid #333;
+            padding-left: 20px;
+        }
+
+        .framework-box {
+            position: relative;
+            padding: 50px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        /* TITLE */
+        .framework-title {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #22c55e;
+        }
+
+        /* GRID */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* CARD */
+        .card-e {
+            padding: 28px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 8px solid var(--framework-color, rgba(255, 255, 255, 0.12));
+            text-align: center;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        a.card-e {
+            color: inherit;
+            text-decoration: none;
+            border-right: 8px solid rgba(255, 255, 255, 0.04);
+        }
+
+        a.card-e:hover {
+            border-right: 8px solid var(--framework-color, rgba(255, 255, 255, 0.12));
+        }
+
+        .card-e:hover {
+            transform: translateY(-6px);
+        }
+
+        .card-emoji {
+            font-size: 52px;
+            margin-bottom: 14px;
+            line-height: 1;
+        }
+
+        .card-e h2 {
+            margin-bottom: 6px;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            margin-bottom: 14px;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .card-e p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* FULL BANNER BOTTOM */
+        .full-banner-bottom-container {
+            width: 100%;
+            margin-top: auto; /* Wypycha baner na dół slajdu */
+            box-sizing: border-box; /* Kluczowe: padding 15px wlicza się w wysokość, nie powiększa jej */
+        }
+
+        .full-banner-bottom {
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .info-banner {
+            background: linear-gradient(90deg,
+            rgba(0, 212, 255, 0.0) 0%,
+            rgba(0, 212, 255, 0.1) 50%,
+            rgba(0, 212, 255, 0.0) 100%);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .warning-banner {
+            background: linear-gradient(90deg,
+            rgba(255, 215, 0, 0.0) 0%,
+            rgba(255, 215, 0, 0.15) 50%,
+            rgba(255, 215, 0, 0.0) 100%);
+
+            border-top: 1px solid rgba(255, 215, 0, 0.35);
+            margin-bottom: 5px;
+        }
+
+        .full-banner-bottom h2 {
+            font-size: 1.1rem;
+            color: var(--r-color-risen);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .info-banner h2 {
+            color: var(--r-color-risen);
+        }
+
+        .warning-banner h2 {
+            color: var(--gold);
+        }
+
+        .full-banner-bottom .origin-info {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+
+
+        /* Copy Box */
+        .code-container {
+            padding: 0 20px 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        pre {
+            color: #aaa;
+            white-space: normal;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        pre.center-text {
+            text-align: center;
+        }
+
+        span.color {
+            padding: 3px;
+            border-radius: 4px;
+            color: var(--color);
+            background-color: color-mix(in srgb, var(--color), transparent 80%);
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 20px;
+            transform: translateY(-50%);
+            background: var(--light-black);
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            border: 1px solid #222;
+            color: #777;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .copy-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Style kart CO-STAR */
+        .card-cs-c {
+            border-left: 8px solid var(--c-color-costar);
+        }
+
+        .card-cs-c .big-letter, .card-cs-c h2 {
+            color: var(--c-color-costar);
+        }
+
+        .card-cs-c:hover {
+            box-shadow: 0 0 50px rgba(255, 62, 62, 0.2);
+            border-color: var(--c-color-costar);
+        }
+
+        .card-cs-o {
+            border-left: 8px solid var(--o-color-costar);
+        }
+
+        .card-cs-o .big-letter, .card-cs-o h2 {
+            color: var(--o-color-costar);
+        }
+
+        .card-cs-o:hover {
+            box-shadow: 0 0 50px rgba(255, 159, 28, 0.2);
+            border-color: var(--o-color-costar);
+        }
+
+        .card-cs-s {
+            border-left: 8px solid var(--s-color-costar);
+        }
+
+        .card-cs-s .big-letter, .card-cs-s h2 {
+            color: var(--s-color-costar);
+        }
+
+        .card-cs-s:hover {
+            box-shadow: 0 0 50px rgba(203, 255, 77, 0.2);
+            border-color: var(--s-color-costar);
+        }
+
+        .card-cs-t {
+            border-left: 8px solid var(--t-color-costar);
+        }
+
+        .card-cs-t .big-letter, .card-cs-t h2 {
+            color: var(--t-color-costar);
+        }
+
+        .card-cs-t:hover {
+            box-shadow: 0 0 50px rgba(77, 238, 225, 0.2);
+            border-color: var(--t-color-costar);
+        }
+
+        .card-cs-a {
+            border-left: 8px solid var(--a-color-costar);
+        }
+
+        .card-cs-a .big-letter, .card-cs-a h2 {
+            color: var(--a-color-costar);
+        }
+
+        .card-cs-a:hover {
+            box-shadow: 0 0 50px rgba(189, 0, 255, 0.2);
+            border-color: var(--a-color-costar);
+        }
+
+        .card-cs-r {
+            border-left: 8px solid var(--r-color-costar);
+        }
+
+        .card-cs-r .big-letter, .card-cs-r h2 {
+            color: var(--r-color-costar);
+        }
+
+        .card-cs-r:hover {
+            box-shadow: 0 0 50px rgba(0, 255, 115, 0.2);
+            border-color: var(--r-color-costar);
+        }
+
+        /* Style kart CO-STAR EXAMPLE */
+        .l-c h3, .l-c .list-letter {
+            color: var(--c-color-costar);
+        }
+
+        .l-c {
+            border-left: 5px solid var(--c-color-costar);
+        }
+
+        .l-o h3, .l-o .list-letter {
+            color: var(--o-color-costar);
+        }
+
+        .l-o {
+            border-left: 5px solid var(--o-color-costar);
+        }
+
+        .l-s h3, .l-s .list-letter {
+            color: var(--s-color-costar);
+        }
+
+        .l-s {
+            border-left: 5px solid var(--s-color-costar);
+        }
+
+        .l-t h3, .l-t .list-letter {
+            color: var(--t-color-costar);
+        }
+
+        .l-t {
+            border-left: 5px solid var(--t-color-costar);
+        }
+
+        .l-a h3, .l-a .list-letter {
+            color: var(--a-color-costar);
+        }
+
+        .l-a {
+            border-left: 5px solid var(--a-color-costar);
+        }
+
+        .l-r h3, .l-r .list-letter {
+            color: var(--r-color-costar);
+        }
+
+        .l-r {
+            border-left: 5px solid var(--r-color-costar);
+        }
+
+        /* Style kart RISEN */
+        .card-r-r {
+            border-left: 8px solid var(--r-color-risen);
+        }
+
+        .card-r-r .big-letter, .card-r-r h2 {
+            color: var(--r-color-risen);
+        }
+
+        .card-r-r:hover {
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+            border-color: var(--r-color-risen);
+        }
+
+        .card-r-i {
+            border-left: 8px solid var(--i-color-risen);
+        }
+
+        .card-r-i .big-letter, .card-r-i h2 {
+            color: var(--i-color-risen);
+        }
+
+        .card-r-i:hover {
+            box-shadow: 0 0 50px rgba(255, 0, 122, 0.2);
+            border-color: var(--i-color-risen);
+        }
+
+        .card-r-s {
+            border-left: 8px solid var(--s-color-risen);
+        }
+
+        .card-r-s .big-letter, .card-r-s h2 {
+            color: var(--s-color-risen);
+        }
+
+        .card-r-s:hover {
+            box-shadow: 0 0 50px rgba(0, 255, 204, 0.2);
+            border-color: var(--s-color-risen);
+        }
+
+        .card-r-e {
+            border-left: 8px solid var(--e-color-risen);
+        }
+
+        .card-r-e .big-letter, .card-r-e h2 {
+            color: var(--e-color-risen);
+        }
+
+        .card-r-e:hover {
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+            border-color: var(--e-color-risen);
+        }
+
+        .card-r-n {
+            border-left: 8px solid var(--n-color-risen);
+        }
+
+        .card-r-n .big-letter, .card-r-n h2 {
+            color: var(--n-color-risen);
+        }
+
+        .card-r-n:hover {
+            box-shadow: 0 0 50px rgba(157, 0, 255, 0.2);
+            border-color: var(--n-color-risen);
+        }
+
+
+        /* =========================================================
+   MOBILE / TABLET FIX ONLY
+   DODAJ NA SAMYM KOŃCU CSS
+   ========================================================= */
+
+        @media (max-width: 1024px) {
+
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
+            /* =========================================
+               LOGO
+            ========================================= */
+            .fixed-logo {
+                top: 16px;
+                right: 16px;
+            }
+
+            .fixed-logo img {
+                height: 38px;
+            }
+
+            /* =========================================
+               SIDEBAR
+            ========================================= */
+            #sidebar {
+                left: 50%;
+                top: auto;
+                bottom: 12px;
+
+                transform: translateX(-50%);
+
+                flex-direction: row;
+
+                padding: 8px 10px;
+
+                width: auto;
+                max-width: calc(100vw - 20px);
+
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                gap: 8px;
+
+                border-radius: 999px;
+            }
+
+            #sidebar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .menu-item {
+                flex-shrink: 0;
+            }
+
+            /* =========================================
+               SLIDES
+            ========================================= */
+            .slide {
+                width: 100vw;
+                min-height: 100dvh;
+                height: 100dvh;
+
+                padding-top: 90px;
+                padding-bottom: 90px;
+
+                overflow: hidden;
+            }
+
+            /* =========================================
+               HERO
+            ========================================= */
+            .hero {
+                margin: 0 0 20px 0;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 12vw, 6rem);
+                letter-spacing: clamp(2px, 1vw, 10px);
+
+                flex-wrap: wrap;
+                line-height: 0.9;
+            }
+
+            /* =========================================
+               BANNERS
+            ========================================= */
+            .full-banner {
+                margin-bottom: 30px;
+                padding: 20px 15px;
+            }
+
+            .full-banner h2 {
+                font-size: clamp(1.2rem, 5vw, 2rem);
+            }
+
+            .full-banner h3 {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+            }
+
+            /* =========================================
+               CONTAINER
+            ========================================= */
+            .container {
+                padding: 0 16px;
+            }
+
+            /* =========================================
+               GRID
+            ========================================= */
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .grid-4, .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* =========================================
+               CARDS
+            ========================================= */
+            .card {
+                padding: 22px;
+                border-radius: 18px;
+
+                overflow: hidden;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+
+            .card-header {
+                gap: 14px;
+                align-items: flex-start;
+            }
+
+            .big-letter {
+                font-size: 3.5rem;
+                line-height: 1;
+                flex-shrink: 0;
+            }
+
+            .titles-wrapper {
+                height: auto;
+                min-height: auto;
+                width: 100%;
+            }
+
+            .card h2 {
+                font-size: 1.5rem;
+                line-height: 1.1;
+
+                word-break: break-word;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+                line-height: 1.2;
+            }
+
+            .card p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            /* =========================================
+               FRAMEWORK
+            ========================================= */
+            .framework-box {
+                padding: 40px 20px 20px;
+                border-radius: 24px;
+            }
+
+            .framework-title {
+                font-size: 11px;
+                padding: 8px 16px;
+
+                width: max-content;
+                max-width: calc(100% - 20px);
+
+                text-align: center;
+            }
+
+            .card-e {
+                padding: 20px;
+            }
+
+            .card-e h2 {
+                font-size: 1.3rem;
+                word-break: break-word;
+            }
+
+            .card-e p {
+                font-size: 0.95rem;
+            }
+
+            /* =========================================
+               TABS
+            ========================================= */
+            .slide-menu {
+                padding-top: 100px;
+            }
+
+            .tabs-wrapper {
+                justify-content: flex-start;
+
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                padding: 10px 16px;
+
+                gap: 10px;
+            }
+
+            .tabs-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-link {
+                flex-shrink: 0;
+
+                padding: 10px 18px;
+
+                font-size: 12px;
+            }
+
+            .tab-content-container {
+                min-height: auto;
+                padding: 0 16px;
+            }
+
+            .tab-content {
+                max-height: none;
+                overflow: visible;
+            }
+
+            /* =========================================
+               LIST CARDS
+            ========================================= */
+            .card-list {
+                flex-direction: column;
+                align-items: flex-start;
+
+                gap: 12px;
+
+                padding: 18px;
+            }
+
+            .card-list:hover {
+                transform: none;
+            }
+
+            .list-letter {
+                width: auto;
+                font-size: 2rem;
+            }
+
+            .list-titles,
+            .w-200,
+            .w-300 {
+                width: 100%;
+            }
+
+            .list-titles h3 {
+                word-break: break-word;
+            }
+
+            .list-desc {
+                border-left: none;
+                padding-left: 0;
+
+                width: 100%;
+            }
+
+            /* =========================================
+               FINAL BOX
+            ========================================= */
+            .code-container {
+                padding: 0 18px 18px;
+            }
+
+            .code-container pre {
+                padding-right: 0;
+
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .copy-btn {
+                position: relative;
+
+                top: auto;
+                right: auto;
+
+                transform: none;
+
+                width: 100%;
+
+                margin-top: 16px;
+            }
+
+            /* =========================================
+               NAV BUTTONS
+            ========================================= */
+            .nav-buttons {
+                right: 12px;
+                bottom: 80px;
+            }
+
+            .nav-buttons button {
+                width: 44px;
+                height: 44px;
+            }
+
+        }
+
+        /* =========================================================
+           SMALL PHONES
+           ========================================================= */
+
+        @media (max-width: 480px) {
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .big-letter {
+                font-size: 2.8rem;
+            }
+
+            .card h2,
+            .card-e h2 {
+                font-size: 1.2rem;
+            }
+
+            .full-banner h2 {
+                font-size: 1.1rem;
+            }
+
+            .full-banner h3 {
+                font-size: 0.95rem;
+            }
+
+        }
+
+
+        /* =========================================================
+   RESPONSIVE PRESENTATION FIX
+   ========================================================= */
+
+        /* -----------------------------------------
+           KEEP SLIDES CENTERED
+        ----------------------------------------- */
+
+        .slide {
+            overflow: hidden;
+        }
+
+        /* -----------------------------------------
+           LAPTOPS / SMALL HEIGHT
+        ----------------------------------------- */
+
+        @media (max-height: 950px) {
+
+            /* =====================================
+               GLOBAL SCALE
+            ===================================== */
+            html {
+                font-size: 0.88vw;
+            }
+
+            /* =====================================
+               SLIDES
+            ===================================== */
+            .slide {
+                height: 100vh;
+                min-height: 100vh;
+
+                justify-content: center;
+            }
+
+            /* =====================================
+               HERO
+            ===================================== */
+            .hero {
+                margin: 2vh 0 1vh 0;
+            }
+
+            .hero h1 {
+                font-size: 7rem;
+                line-height: 0.9;
+            }
+
+            /* =====================================
+               BANNERS
+            ===================================== */
+            .full-banner {
+                margin-bottom: 2vh;
+                padding: 1.8vh 0;
+            }
+
+            .full-banner h2 {
+                font-size: 1.8rem;
+            }
+
+            .full-banner h3 {
+                font-size: 1.2rem;
+                padding-bottom: 0.8vh;
+            }
+
+            /* =====================================
+               CONTAINER
+            ===================================== */
+            .container {
+                max-width: 92vw;
+            }
+
+            /* =====================================
+               GRID
+            ===================================== */
+            .grid {
+                grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(320px, 100%), 1fr)
+        );
+
+                gap: 1.2vw;
+            }
+
+            .grid-4, .grid-3 {
+                gap: 1vw;
+            }
+
+            /* =====================================
+               CARDS
+            ===================================== */
+            .card {
+                padding: 1.5vw;
+            }
+
+            .card:hover {
+                transform: scale(1.03);
+            }
+
+            .card-header {
+                gap: 1vw;
+                margin-bottom: 1vh;
+            }
+
+            .big-letter {
+                font-size: 4rem;
+            }
+
+            .titles-wrapper {
+                height: auto;
+            }
+
+            .card h2 {
+                font-size: 1.6rem;
+
+                word-break: break-word;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .card p {
+                font-size: 0.92rem;
+                line-height: 1.35;
+            }
+
+            /* =====================================
+               FRAMEWORK
+            ===================================== */
+            .framework-box {
+                padding: 3vh 1.5vw 1.5vw;
+            }
+
+            .framework-title {
+                font-size: 0.7rem;
+            }
+
+            .card-e {
+                padding: 1.2vw;
+            }
+
+            .card-emoji {
+                font-size: 2.5rem;
+                margin-bottom: 0.5vh;
+            }
+
+            .card-e h2 {
+                font-size: 1.2rem;
+            }
+
+            .card-e p {
+                font-size: 0.82rem;
+                line-height: 1.35;
+            }
+
+            /* =====================================
+               TABS
+            ===================================== */
+            .slide-menu {
+                padding-top: 5vh;
+            }
+
+            .tabs-wrapper {
+                padding: 1vh 0;
+            }
+
+            .tab-link {
+                padding: 0.7vh 1vw;
+                font-size: 0.75rem;
+            }
+
+            .tab-content-container {
+                min-height: 55vh;
+            }
+
+            /* =====================================
+               CARD LIST
+            ===================================== */
+            .card-list {
+                padding: 0.8vh 1vw;
+                gap: 1vw;
+            }
+
+            .list-letter {
+                font-size: 2rem;
+                width: 2.2vw;
+            }
+
+            .list-titles {
+                width: 8vw;
+            }
+
+            .list-titles h3 {
+                font-size: 1rem;
+            }
+
+            .list-desc {
+                font-size: 0.82rem;
+                line-height: 1.3;
+            }
+
+            .w-200 {
+                width: 12vw;
+            }
+
+            .w-300 {
+                width: 16vw;
+            }
+
+            /* =====================================
+               FINAL BOX
+            ===================================== */
+            .code-container {
+                padding: 0 1.2vw 1.2vw;
+            }
+
+            .code-container pre {
+                font-size: 0.85rem;
+                line-height: 1.35;
+            }
+
+            .copy-btn {
+                padding: 0.7vh 1vw;
+                font-size: 0.7rem;
+            }
+
+            /* =====================================
+               BOTTOM BANNER
+            ===================================== */
+            .full-banner-bottom {
+                padding: 1vh 0;
+            }
+
+            .full-banner-bottom h2 {
+                font-size: 0.9rem;
+            }
+
+            .full-banner-bottom .origin-info {
+                font-size: 0.7rem;
+            }
+
+            /* =====================================
+               LOGO
+            ===================================== */
+            .fixed-logo {
+                top: 1.5vh;
+                right: 2vw;
+            }
+
+            .fixed-logo img {
+                height: 2.5rem;
+            }
+
+            /* =====================================
+               SIDEBAR
+            ===================================== */
+            #sidebar {
+                left: 0.5vw;
+                gap: 0.5vw;
+                padding: 0.5vw;
+            }
+
+            .menu-item {
+                width: 2rem;
+                height: 2rem;
+
+                font-size: 0.7rem;
+            }
+
+            /* =====================================
+               NAV BUTTONS
+            ===================================== */
+            .nav-buttons {
+                bottom: 1.5vh;
+                right: 1vw;
+            }
+
+            .nav-buttons button {
+                width: 2.5rem;
+                height: 2.5rem;
+
+                font-size: 1rem;
+            }
+
+        }
+
+
+        /* =====================================
+                    PROMPT CODE
+        ===================================== */
+        .prompt-card {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .good-prompt {
+            border-left: 8px solid rgba(34, 197, 94, 0.85);
+        }
+
+        .good-color {
+            color: rgba(34, 197, 94, 0.85);
+        }
+
+        .good-prompt:hover {
+            border: 1px solid rgba(34, 197, 94, 0.85);
+            border-left: 8px solid rgba(34, 197, 94, 0.85);
+        }
+
+        .bad-prompt {
+            border-left: 8px solid #FF3E3E;
+        }
+
+        .bad-color {
+            color: #FF3E3E;
+        }
+
+        .bad-prompt:hover {
+            border: 1px solid #FF3E3E;
+            border-left: 8px solid #FF3E3E;
+        }
+
+        .random-color {
+            border-left: 8px solid var(--card-color, rgba(255, 255, 255, 0.12));
+        }
+    </style>
+</head>
+<body>
+
+<div class="fixed-logo">
+    <img src="https://companieslogo.com/img/orig/XTB.WA-57a28bee.png?t=1733128334" alt="XTB Logo">
+</div>
+
+<div class="nav-buttons">
+    <button onclick="move(-1)">▲</button>
+    <button onclick="move(1)">▼</button>
+</div>
+
+<div id="sidebar"></div>
+
+<!--    START   -->
+<div class="slide" id="s1" style="background-image: url(start.png);"></div>
+
+<!--    FRAMEWORKI  -->
+<div class="slide slide-menu" id="s2" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active"> 🎬 ACT</div>
+        <div class="tab-link">⭐ CO-STAR</div>
+        <div class="tab-link">📈 RISEN</div>
+        <div class="tab-link"> 🎯 GCA</div>
+        <div class="tab-link">🔬 RODES</div>
+        <div class="tab-link">📅 Study Plan</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Złożonych zadaniach wymagających szczegółowego podejścia z jasnymi celami i
+                    ograniczeniami.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Działaj (Rola):</span> Zdefiniuj konkretną rolę, zawód lub postać, w którą ma wcielić się sztuczna inteligencja.<br/>
+                        <span>Cel nadrzędny:</span> Wyraźnie określ, co chcesz osiągnąć.<br/>
+                        <span>Ograniczenia:</span> Określ, czego chcesz uniknąć lub co należy wykluczyć.<br/>
+                        <span>Kontekst:</span> Podaj istotne informacje tła oraz okoliczności towarzyszące.<br/>
+                        <span>Zadanie:</span> Jasno sformułuj, co sztuczna inteligencja ma zrobić lub wykonać.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Tworzeniu treści i zadaniach pisarskich, gdzie kluczowe znaczenie ma styl, ton oraz
+                    świadomość odbiorców.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Kontekst:</span> Informacje tła istotne dla realizowanego zadania.<br/>
+                        <span>Cel:</span> Jasna definicja zadania.<br/>
+                        <span>Styl:</span> Oczekiwany styl pisania lub głos (voice).<br/>
+                        <span>Ton:</span> Emocjonalny ton wypowiedzi.<br/>
+                        <span>Odbiorcy:</span> Określenie docelowej grupy odbiorców.<br/>
+                        <span>Odpowiedź:</span> Format wyjściowy danych.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Interaktywnych sesjach wymagających stałego zaangażowania i jasnych kolejnych
+                    kroków.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Rola:</span> Persona lub rola, którą powinna przyjąć sztuczna inteligencja.<br/>
+                        <span>Dane wejściowe:</span> Szczegółowe informacje lub pytania kierujące odpowiedziami.<br/>
+                        <span>Struktura:</span> Oczekiwany format danych wyjściowych.<br/>
+                        <span>Zaangażowanie:</span> Styl interakcji z użytkownikami.<br/>
+                        <span>Kolejne kroki:</span> Wskazówki dotyczące działań następczych lub kolejnych pytań.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 4 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Szybkich, prostych zadaniach, gdzie priorytetem jest prostota i skupienie na
+                    odbiorcy.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Cel:</span> Jakie zadanie powinna wykonać sztuczna inteligencja.<br/>
+                        <span>Kontekst:</span> Dlaczego zadanie jest konieczne i jakie jest jego znaczenie.<br/>
+                        <span>Odbiorcy:</span> Kto będzie czytał dane wyjściowe lub odniesie z nich korzyść.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 5 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Zadaniach, które zyskują dzięki konkretnym przykładom i określonym wymaganiom
+                    stylistycznym.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Rola:</span> Jaką rolę powinna odegrać sztuczna inteligencja?<br/>
+                        <span>Cel:</span> Jaki jest pożądany rezultat końcowy?<br/>
+                        <span>Szczegóły:</span> Szczegółowe informacje potrzebne do zarysowania kontekstu.<br/>
+                        <span>Przykłady:</span> Dostarczenie przykładów ilustrujących oczekiwania.<br/>
+                        <span>Styl:</span> Pożądany ton i styl komunikacji.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 6 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">📢</div>
+                <div class="list-titles w-400"><h3>Najlepiej sprawdza się</h3></div>
+                <p class="list-desc">Tworzeniu kompleksowych planów nauki i wytycznych edukacyjnych w określonych
+                    tematach.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="random-title">
+                        <span>Instrukcja (Prompt):</span> Szczegółowe wytyczne dla wirtualnego nauczyciela (AI tutor).<br/>
+                        <span>Temat:</span> Konkretna dziedzina lub umiejętność, którą chcesz opanować.<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                <a href="https://arxiv.org/abs/2401.14423" target="_blank">
+                    Znaczniki XML, takie jak &lt;kontekst&gt;, &lt;dane&gt;, &lt;zadanie&gt; i <\ograniczenia\>, tworzą
+                    jawne strefy semantyczne, umożliwiając deterministyczne uzyskiwanie wyników z systemu, który w innym
+                    przypadku byłby probabilistyczny.
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    CO-STAR   -->
+<div class="slide" id="s3" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            FRAMEWORK
+        </div>
+
+        <h1>
+            <span class="t-c">C</span>
+            <span class="t-o">O</span>
+            <span class="t-dash">-</span>
+            <span class="t-s">S</span>
+            <span class="t-t">T</span>
+            <span class="t-a">A</span>
+            <span class="t-r">R</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🏆 Zwycięski Schemat Prompt Engineeringu 2023</h2>
+        <div class="origin-info">
+            Twórca: <b>Sheila Teo</b> | Zawody: <b>Prompt Royale</b> | Organizator: <b>GovTech Singapore</b>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card card-cs-c">
+                <div class="card-header">
+                    <div class="big-letter">C</div>
+                    <div class="titles-wrapper">
+                        <h2>Context</h2>
+                        <div class="subtitle">kontekst</div>
+                    </div>
+                </div>
+                <p>Zdefiniuj tło operacyjne. Podaj kluczowe informacje o projekcie i swojej roli, aby AI rozumiała,
+                    dlaczego wykonujesz dane zadanie.</p>
+            </div>
+
+            <div class="card card-cs-o">
+                <div class="card-header">
+                    <div class="big-letter">O</div>
+                    <div class="titles-wrapper">
+                        <h2>Objective</h2>
+                        <div class="subtitle">cel i zadanie</div>
+                    </div>
+                </div>
+                <p>Określ konkretny cel. Sformułuj jasną instrukcję dotyczącą tego, co model ma wygenerować, bez miejsca
+                    na domysły.</p>
+            </div>
+
+            <div class="card card-cs-s">
+                <div class="card-header">
+                    <div class="big-letter">S</div>
+                    <div class="titles-wrapper">
+                        <h2>Style</h2>
+                        <div class="subtitle">styl wypowiedzi</div>
+                    </div>
+                </div>
+                <p>Określ styl komunikacji, np. prosty, techniczny, ekspercki, formalny, swobodny lub wzorować styl na
+                    komunikacji branżowej.</p>
+            </div>
+
+            <div class="card card-cs-t">
+                <div class="card-header">
+                    <div class="big-letter">T</div>
+                    <div class="titles-wrapper">
+                        <h2>Tone</h2>
+                        <div class="subtitle">wydźwięk emocjonalny</div>
+                    </div>
+                </div>
+                <p>Ustal ton komunikacji — od chłodnej analizy technicznej po entuzjastyczne wsparcie klienta.</p>
+            </div>
+
+            <div class="card card-cs-a">
+                <div class="card-header">
+                    <div class="big-letter">A</div>
+                    <div class="titles-wrapper">
+                        <h2>Audience</h2>
+                        <div class="subtitle">grupa odbiorców</div>
+                    </div>
+                </div>
+                <p>Określ grupę odbiorców. AI dopasuje poziom języka, żargon i stopień szczegółowości do wiedzy
+                    czytelnika.</p>
+            </div>
+
+            <div class="card card-cs-r">
+                <div class="card-header">
+                    <div class="big-letter">R</div>
+                    <div class="titles-wrapper">
+                        <h2>Response</h2>
+                        <div class="subtitle">format odpowiedzi</div>
+                    </div>
+                </div>
+                <p>Wymuś strukturę odpowiedzi. Określ, czy wynik ma mieć formę tabeli, listy, czy ciągłego tekstu.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s4" style="background-image: url(background.png);">
+
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">💰 Marketing</div>
+        <div class="tab-link">📚 Edukacja</div>
+        <div class="tab-link">💻 Programista</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        stwórz kampanię reklamową zwiększającą sprzedaż kremów przeciwstarzeniowych
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="card-list l-c">
+                <div class="list-letter">C</div>
+                <div class="list-titles"><h3>Context</h3><span>kontekst</span></div>
+                <p class="list-desc">prowadzę sklep internetowy z kosmetykami naturalnymi i wprowadzam nową linię kremów
+                    przeciwstarzeniowych.</p>
+            </div>
+            <div class="card-list l-o">
+                <div class="list-letter">O</div>
+                <div class="list-titles"><h3>Objective</h3><span>cel</span></div>
+                <p class="list-desc">stwórz kampanię reklamową na Facebooka zwiększającą sprzedaż</p>
+            </div>
+            <div class="card-list l-s">
+                <div class="list-letter">S</div>
+                <div class="list-titles"><h3>Style</h3><span>styl</span></div>
+                <p class="list-desc">nowoczesny, emocjonalny i premium.</p>
+            </div>
+            <div class="card-list l-t">
+                <div class="list-letter">T</div>
+                <div class="list-titles"><h3>Tone</h3><span>wydźwięk</span></div>
+                <p class="list-desc">inspirujący i kobiecy.</p>
+            </div>
+            <div class="card-list l-a">
+                <div class="list-letter">A</div>
+                <div class="list-titles"><h3>Audience</h3><span>odbiorca</span></div>
+                <p class="list-desc">kobiety 35–55 zainteresowane pielęgnacją skóry i kosmetykami premium.</p>
+            </div>
+            <div class="card-list l-r">
+                <div class="list-letter">R</div>
+                <div class="list-titles"><h3>Response</h3><span>format</span></div>
+                <p class="list-desc">przygotuj 3 nagłówki reklam, 2 teksty reklamowe, CTA oraz hashtag kampanii.</p>
+            </div>
+
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Rola: Jesteś ekspertem marketingu digitalowego.<br/>
+                        Kontekst: prowadzę sklep internetowy z kosmetykami naturalnymi i wprowadzam nową linię kremów przeciwstarzeniowych.<br/>
+                        Cel: stwórz kampanię reklamową na Facebooka zwiększającą sprzedaż.<br/>
+                        Styl: nowoczesny, emocjonalny i premium.<br/>
+                        Ton: inspirujący i kobiecy.<br/>
+                        Odbiorcy: kobiety 35–55 zainteresowane pielęgnacją skóry i kosmetykami premium.<br/>
+                        Format odpowiedzi: przygotuj 3 nagłówki reklam, 2 teksty reklamowe, CTA oraz hashtag kampanii.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        przygotowuję kurs online do nauki Excela dla początkujących
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="card-list l-c">
+                <div class="list-letter">C</div>
+                <div class="list-titles"><h3>Context</h3><span>kontekst</span></div>
+                <p class="list-desc">przygotowuję kurs online do nauki Excela dla osób początkujących.</p>
+            </div>
+            <div class="card-list l-o">
+                <div class="list-letter">O</div>
+                <div class="list-titles"><h3>Objective</h3><span>cel</span></div>
+                <p class="list-desc">stwórz plan pierwszej lekcji.</p>
+            </div>
+            <div class="card-list l-s">
+                <div class="list-letter">S</div>
+                <div class="list-titles"><h3>Style</h3><span>styl</span></div>
+                <p class="list-desc">prosty i praktyczny.</p>
+            </div>
+            <div class="card-list l-t">
+                <div class="list-letter">T</div>
+                <div class="list-titles"><h3>Tone</h3><span>wydźwięk</span></div>
+                <p class="list-desc">przyjazny i motywujący.</p>
+            </div>
+            <div class="card-list l-a">
+                <div class="list-letter">A</div>
+                <div class="list-titles"><h3>Audience</h3><span>odbiorca</span></div>
+                <p class="list-desc">osoby 40+ zmieniające branżę i uczące się pracy biurowej.</p>
+            </div>
+            <div class="card-list l-r">
+                <div class="list-letter">R</div>
+                <div class="list-titles"><h3>Response</h3><span>format</span></div>
+                <p class="list-desc">przygotuj plan lekcji, ćwiczenia praktyczne, checklistę oraz pracę domową.</p>
+            </div>
+
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Rola: Jesteś trenerem Excela dla początkujących.<br/>
+                        Kontekst: przygotowuję kurs online do nauki Excela dla osób początkujących.<br/>
+                        Cel: stwórz plan pierwszej lekcji.<br/>
+                        Styl: prosty i praktyczny.<br/>
+                        Ton: przyjazny i motywujący.<br/>
+                        Odbiorcy: osoby 40+ zmieniające branżę i uczące się pracy biurowej.<br/>
+                        Format odpowiedzi: przygotuj plan lekcji, ćwiczenia praktyczne, checklistę oraz pracę domową.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        wygeneruj autoryzację JWT dla node.js
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="card-list l-c">
+                <div class="list-letter">C</div>
+                <div class="list-titles"><h3>Context</h3><span>kontekst</span></div>
+                <p class="list-desc">tworzę aplikację SaaS do zarządzania zadaniami dla małych firm.</p>
+            </div>
+            <div class="card-list l-o">
+                <div class="list-letter">O</div>
+                <div class="list-titles"><h3>Objective</h3><span>cel</span></div>
+                <p class="list-desc">wygeneruj backend API w Node.js z autoryzacją JWT.</p>
+            </div>
+            <div class="card-list l-s">
+                <div class="list-letter">S</div>
+                <div class="list-titles"><h3>Style</h3><span>styl</span></div>
+                <p class="list-desc">modularny, czytelny i zgodny z best practices.</p>
+            </div>
+            <div class="card-list l-t">
+                <div class="list-letter">T</div>
+                <div class="list-titles"><h3>Tone</h3><span>wydźwięk</span></div>
+                <p class="list-desc">techniczny i profesjonalny.</p>
+            </div>
+            <div class="card-list l-a">
+                <div class="list-letter">A</div>
+                <div class="list-titles"><h3>Audience</h3><span>odbiorca</span></div>
+                <p class="list-desc">mid-level backend developerzy.</p>
+            </div>
+            <div class="card-list l-r">
+                <div class="list-letter">R</div>
+                <div class="list-titles"><h3>Response</h3><span>format</span></div>
+                <p class="list-desc">pokaż strukturę projektu, endpointy, middleware JWT oraz przykładowe requesty
+                    API.</p>
+            </div>
+
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Rola: Jesteś seniorem backend developerem.<br/>
+                        Kontekst: tworzę aplikację SaaS do zarządzania zadaniami dla małych firm.<br/>
+                        Cel: wygeneruj backend API w Node.js z autoryzacją JWT.<br/>
+                        Styl: modularny, czytelny i zgodny z best practices.<br/>
+                        Ton: techniczny i profesjonalny.<br/>
+                        Odbiorcy: mid-level backend developerzy.<br/>
+                        Format odpowiedzi: pokaż strukturę projektu, endpointy, middleware JWT oraz przykładowe requesty API.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom info-banner">
+            <h2>👀 Widzisz różnicę?</h2>
+            <div class="origin-info">
+                <a href="https://arxiv.org/abs/2510.12637" target="_blank">
+                    Z <b>CO-STAR</b> przejmujesz pełną kontrolę. Jasno określasz oczekiwania, a AI przestaje zgadywać i
+                    zaczyna dostarczać dokładnie to, czego potrzebujesz.
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    RISEN   -->
+<div class="slide" id="s5" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            FRAMEWORK
+        </div>
+
+        <h1>
+            <span style="color: var(--r-color-risen)">R</span>
+            <span style="color: var(--i-color-risen)">I</span>
+            <span style="color: var(--s-color-risen)">S</span>
+            <span style="color: var(--e-color-risen)">E</span>
+            <span style="color: var(--n-color-risen)">N</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🚀 Alternatywny Framework dla zadań technicznych</h2>
+        <div class="origin-info">
+            Skoncentrowany na roli, procesie i precyzyjnych ograniczeniach systemowych
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <!-- R -->
+            <div class="card card-r-r">
+                <div class="card-header">
+                    <div class="big-letter">R</div>
+                    <div class="titles-wrapper">
+                        <h2>Role</h2>
+                        <div class="subtitle">rola</div>
+                    </div>
+                </div>
+                <p>Zdefiniuj rolę eksperta. Określ, kim ma być AI, np. Senior DevOps Engineer lub Architekt Rozwiązań
+                    Chmurowych.</p>
+            </div>
+
+            <!-- I -->
+            <div class="card card-r-i">
+                <div class="card-header">
+                    <div class="big-letter">I</div>
+                    <div class="titles-wrapper">
+                        <h2>Instructions</h2>
+                        <div class="subtitle">instrukcje</div>
+                    </div>
+                </div>
+                <p>Opisz dokładnie zadanie do wykonania oraz jego cel biznesowy lub techniczny. Określ, co ma zostać
+                    osiągnięte i jaki problem ma zostać rozwiązany.</p>
+            </div>
+
+            <!-- S -->
+            <div class="card card-r-s">
+                <div class="card-header">
+                    <div class="big-letter">S</div>
+                    <div class="titles-wrapper">
+                        <h2>Steps</h2>
+                        <div class="subtitle">kroki</div>
+                    </div>
+                </div>
+                <p>Określ proces działania. Rozbij zadanie na logiczne etapy, które AI musi przejść, aby dojść do
+                    rozwiązania.</p>
+            </div>
+
+            <!-- E -->
+            <div class="card card-r-e">
+                <div class="card-header">
+                    <div class="big-letter">E</div>
+                    <div class="titles-wrapper">
+                        <h2>Expectation</h2>
+                        <div class="subtitle">oczekiwania</div>
+                    </div>
+                </div>
+                <p>Zdefiniuj standard jakości wyniku. Określ wymagania dotyczące poprawności, czytelności,
+                    skalowalności, wydajności lub zgodności z dobrymi praktykami.</p>
+            </div>
+
+            <!-- N -->
+            <div class="card card-r-n">
+                <div class="card-header">
+                    <div class="big-letter">N</div>
+                    <div class="titles-wrapper">
+                        <h2>Narrowing</h2>
+                        <div class="subtitle">zawężenie</div>
+                    </div>
+                </div>
+                <p>Doprecyzuj ograniczenia i warunki generowania odpowiedzi. Wskaż, czego AI nie powinno używać, jakie
+                    limity obowiązują (np. długość, format) oraz na czym ma się skupić lub czego unikać.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s6" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">💰 Marketing</div>
+        <div class="tab-link">📺 Social media</div>
+        <div class="tab-link">💻 Programista</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        stwórz kampanię dla sklepu z suplementami diety
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="card-list" style="border-left: 5px solid var(--r-color-risen);">
+                <div class="list-letter" style="color: var(--r-color-risen);">R</div>
+                <div class="list-titles w-200"><h3>Role</h3><span>rola</span></div>
+                <p class="list-desc">Jesteś seniorem performance marketingu specjalizującym się w Meta Ads.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--i-color-risen);">
+                <div class="list-letter" style="color: var(--i-color-risen);">I</div>
+                <div class="list-titles w-200"><h3>Instructions</h3><span>instrukcje</span></div>
+                <p class="list-desc">stwórz kampanię reklamową dla nowego sklepu z suplementami diety.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--s-color-risen);">
+                <div class="list-letter" style="color: var(--s-color-risen);">S</div>
+                <div class="list-titles w-200"><h3>Steps</h3><span>kroki</span></div>
+                <p class="list-desc">
+                    1. Określ grupę docelową.<br/>
+                    2. Napisz 3 nagłówki reklamowe.<br/>
+                    3. Przygotuj 2 teksty reklam.<br/>
+                    4. Dodaj CTA.<br/>
+                    5. Zaproponuj koncepcję grafiki.<br/>
+                </p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--e-color-risen);">
+                <div class="list-letter" style="color: var(--e-color-risen);">E</div>
+                <div class="list-titles w-200"><h3>Expectation</h3><span>oczekiwania</span></div>
+                <p class="list-desc">zwiększenie sprzedaży i zdobycie pierwszych klientów.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--n-color-risen);">
+                <div class="list-letter" style="color: var(--n-color-risen);">N</div>
+                <div class="list-titles w-200"><h3>Narrowing</h3><span>zawężenie</span></div>
+                <p class="list-desc">budżet 3000 zł, krótkie reklamy, styl premium i nowoczesny, bez przesadnych
+                    obietnic zdrowotnych.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Rola: Jesteś seniorem performance marketingu specjalizującym się w Meta Ads.<br/>
+                        Zadanie: stwórz kampanię reklamową dla nowego sklepu z suplementami diety.<br/>
+                        Kroki:<br/>
+                            &nbsp;&nbsp;1. Określ grupę docelową.<br/>
+                            &nbsp;&nbsp;2. Napisz 3 nagłówki reklamowe.<br/>
+                            &nbsp;&nbsp;3. Przygotuj 2 teksty reklam.<br/>
+                            &nbsp;&nbsp;4. Dodaj CTA.<br/>
+                            &nbsp;&nbsp;5. Zaproponuj koncepcję grafiki.<br/>
+                        Cel końcowy: zwiększenie sprzedaży i zdobycie pierwszych klientów.<br/>
+                        Ograniczenia: budżet 3000 zł, krótkie reklamy, styl premium i nowoczesny, bez przesadnych obietnic zdrowotnych.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        napisz scenariusz filmu o wykorzystaniu AI w życiu
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="card-list" style="border-left: 5px solid var(--r-color-risen);">
+                <div class="list-letter" style="color: var(--r-color-risen);">R</div>
+                <div class="list-titles w-200"><h3>Role</h3><span>rola</span></div>
+                <p class="list-desc">Jesteś strategiem YouTube i copywriterem viralowych treści.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--i-color-risen);">
+                <div class="list-letter" style="color: var(--i-color-risen);">I</div>
+                <div class="list-titles w-200"><h3>Instructions</h3><span>instrukcje</span></div>
+                <p class="list-desc">przygotuj scenariusz filmu o wykorzystaniu AI w codziennej pracy.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--s-color-risen);">
+                <div class="list-letter" style="color: var(--s-color-risen);">S</div>
+                <div class="list-titles w-200"><h3>Steps</h3><span>kroki</span></div>
+                <p class="list-desc">
+                    1. Wymyśl hook na pierwsze 10 sekund.<br/>
+                    2. Stwórz strukturę filmu.<br/>
+                    3. Dodaj praktyczne przykłady użycia AI.<br/>
+                    4. Zaproponuj CTA.<br/>
+                    5. Wymyśl miniaturkę i tytuł.<br/>
+                </p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--e-color-risen);">
+                <div class="list-letter" style="color: var(--e-color-risen);">E</div>
+                <div class="list-titles w-200"><h3>Expectation</h3><span>oczekiwania</span></div>
+                <p class="list-desc">zwiększenie subskrypcji i watch time.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--n-color-risen);">
+                <div class="list-letter" style="color: var(--n-color-risen);">N</div>
+                <div class="list-titles w-200"><h3>Narrowing</h3><span>zawężenie</span></div>
+                <p class="list-desc">długość 8–10 minut, dynamiczny styl, prosty język, odbiorcy początkujący
+                    przedsiębiorcy i freelancerzy.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Jesteś strategiem YouTube i copywriterem viralowych treści.<br/>
+                        Zadanie: przygotuj scenariusz filmu o wykorzystaniu AI w codziennej pracy.<br/>
+
+                        Kroki:<br/>
+                        &nbsp;&nbsp;1. Wymyśl hook na pierwsze 10 sekund.<br/>
+                        &nbsp;&nbsp;2. Stwórz strukturę filmu.<br/>
+                        &nbsp;&nbsp;3. Dodaj praktyczne przykłady użycia AI.<br/>
+                        &nbsp;&nbsp;4. Zaproponuj CTA.<br/>
+                        &nbsp;&nbsp;5. Wymyśl miniaturkę i tytuł.<br/>
+
+                        Cel końcowy: zwiększenie subskrypcji i watch time.<br/>
+                        Ograniczenia: długość 8–10 minut, dynamiczny styl, prosty język, odbiorcy początkujący przedsiębiorcy i freelancerzy.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card bad-prompt">
+                <span class="bad-color">❌ BAD</span>
+                <div class="code-container">
+                    <pre>
+                        napisz rest API dla projektu zarządzania projektami
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--r-color-risen);">
+                <div class="list-letter" style="color: var(--r-color-risen);">R</div>
+                <div class="list-titles w-200"><h3>Role</h3><span>rola</span></div>
+                <p class="list-desc">Jesteś doświadczonym architektem backendu.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--i-color-risen);">
+                <div class="list-letter" style="color: var(--i-color-risen);">I</div>
+                <div class="list-titles w-200"><h3>Instructions</h3><span>instrukcje</span></div>
+                <p class="list-desc">pomóż stworzyć REST API dla aplikacji do zarządzania projektami.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--s-color-risen);">
+                <div class="list-letter" style="color: var(--s-color-risen);">S</div>
+                <div class="list-titles w-200"><h3>Steps</h3><span>kroki</span></div>
+                <p class="list-desc">
+                    1. Zaproponuj strukturę folderów.<br/>
+                    2. Stwórz endpointy CRUD.<br/>
+                    3. Dodaj autoryzację JWT.<br/>
+                    4. Zaimplementuj obsługę błędów.<br/>
+                    5. Dodaj przykładowe testy.<br/>
+                </p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--e-color-risen);">
+                <div class="list-letter" style="color: var(--e-color-risen);">E</div>
+                <div class="list-titles w-200"><h3>Expectation</h3><span>oczekiwania</span></div>
+                <p class="list-desc">gotowy szablon backendu produkcyjnego.</p>
+            </div>
+            <div class="card-list" style="border-left: 5px solid var(--n-color-risen);">
+                <div class="list-letter" style="color: var(--n-color-risen);">N</div>
+                <div class="list-titles w-200"><h3>Narrowing</h3><span>zawężenie</span></div>
+                <p class="list-desc">Node.js + Express, PostgreSQL, Clean Architecture, SOLID, minimum zbędnych
+                    komentarzy.</p>
+            </div>
+            <div class="card-list prompt-card good-prompt">
+                <span class="good-color">✅ GOOD</span>
+                <div class="code-container">
+                    <pre>
+                        Rola: Jesteś doświadczonym architektem backendu.<br/>
+                        Zadanie: pomóż stworzyć REST API dla aplikacji do zarządzania projektami.<br/>
+                        Kroki:<br/>
+                        &nbsp;&nbsp;1. Zaproponuj strukturę folderów.<br/>
+                        &nbsp;&nbsp;2. Stwórz endpointy CRUD.<br/>
+                        &nbsp;&nbsp;3. Dodaj autoryzację JWT.<br/>
+                        &nbsp;&nbsp;4. Zaimplementuj obsługę błędów.<br/>
+                        &nbsp;&nbsp;5. Dodaj przykładowe testy.<br/>
+
+                        Cel końcowy: gotowy szablon backendu produkcyjnego.<br/>
+                        Ograniczenia: Node.js + Express, PostgreSQL, Clean Architecture, SOLID, minimum zbędnych komentarzy.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom info-banner">
+            <h2>👀 Widzisz różnicę?</h2>
+            <div class="origin-info">
+                Bez <b>RISEN</b> zostawiasz zbyt wiele przypadkowi — AI interpretuje zadanie po swojemu, zamiast
+                realizować konkretny cel.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    TECHNIC: EMOTION PROMPT   -->
+<div class="slide" id="s7" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>E</span>
+            <span>M</span>
+            <span>O</span>
+            <span>T</span>
+            <span>I</span>
+            <span>O</span>
+            <span>N</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>Wyniki z badań:</h2>
+        <div class="origin-info">
+            <b>+8%</b> lepsze wyniki w precyzyjnych zadaniach, <b>+115%</b> w wybranych benchmarkach i średnio
+            <b>+10,9%</b> wyższa jakość tworzonych odpowiedzi.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+        <div class="framework-title">
+            Kiedy używać
+        </div>
+
+        <div class="grid grid-4">
+            <div class="card-e">
+                <div class="card-emoji">✍️</div>
+                <h2>Zastosowanie</h2>
+                <div class="subtitle"></div>
+                <p>Zadania kreatywne: teksty, maile, posty</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧠</div>
+                <h2>Rozumowanie</h2>
+                <div class="subtitle"></div>
+                <p>Analiza i wnioskowanie</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🎯</div>
+                <h2>Precyzja</h2>
+                <div class="subtitle"></div>
+                <p>Gdy zależy Ci na dokładności</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧩</div>
+                <h2>Złożoność</h2>
+                <div class="subtitle"></div>
+                <p>Złożone zadania wieloetapowe</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s8" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">KEYWORD</div>
+        <div class="tab-link">PHRASES</div>
+        <div class="tab-link">PROMPTS</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list random-color">
+                <div class="list-letter">⚡</div>
+                <div class="list-titles w-300">
+                    <h3>Pilność / ważność</h3>
+                </div>
+                <p class="list-desc">kluczowy, istotny, niezbędny, decydujący, pilny</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🏆</div>
+                <div class="list-titles w-300">
+                    <h3>Osiągnięcie / sukces</h3>
+                </div>
+                <p class="list-desc">sukces, triumf, zwycięstwo, przełom, osiągnięcie</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">💪</div>
+                <div class="list-titles w-300">
+                    <h3>Stany emocjonalne</h3>
+                </div>
+                <p class="list-desc">pewny siebie, zainspirowany, podekscytowany, dumny, zmotywowany</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">📌</div>
+                <div class="list-titles w-300">
+                    <h3>Odpowiedzialność</h3>
+                </div>
+                <p class="list-desc">obowiązek, zobowiązanie, odpowiedzialność, zaangażowanie</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🚀</div>
+                <div class="list-titles w-300">
+                    <h3>Zachęta</h3>
+                </div>
+                <p class="list-desc">zdolny, silny, zdeterminowany, odporny, wytrwały</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🎯</div>
+                <div class="list-titles w-300">
+                    <h3>Doskonałość / jakość</h3>
+                </div>
+                <p class="list-desc">wybitny, bezbłędny, genialny, wyjątkowy, perfekcyjny</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">⚠️</div>
+                <div class="list-titles w-300">
+                    <h3>Strach / ryzyko</h3>
+                </div>
+                <p class="list-desc">porażka, niebezpieczeństwo, strata, błąd, zagrożenie</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🌱</div>
+                <div class="list-titles w-300">
+                    <h3>Nadzieja / aspiracja</h3>
+                </div>
+                <p class="list-desc">marzenie, wizja, możliwość, szansa, przyszłość</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🤝</div>
+                <div class="list-titles w-300">
+                    <h3>Przynależność / więź</h3>
+                </div>
+                <p class="list-desc">razem, zjednoczony, zaufany, doceniony, uwzględniony</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🔍</div>
+                <div class="list-titles w-300">
+                    <h3>Ciekawość / odkrywanie</h3>
+                </div>
+                <p class="list-desc">tajemnica, ukryty, eksploracja, ujawnienie, odkrycie</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">💡</div>
+                <div class="list-titles w-300">
+                    <h3>Kreatywność / innowacja</h3>
+                </div>
+                <p class="list-desc">oryginalny, odważny, pomysłowy, innowacyjny, przełomowy</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🛡️</div>
+                <div class="list-titles w-300">
+                    <h3>Komfort / bezpieczeństwo</h3>
+                </div>
+                <p class="list-desc">bezpieczny, spokojny, pewny, wspierany, chroniony</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🏅</div>
+                <div class="list-titles w-300">
+                    <h3>Duma / uznanie</h3>
+                </div>
+                <p class="list-desc">honor, szacunek, godność, reputacja, prestiż</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">❤️</div>
+                <div class="list-titles w-300">
+                    <h3>Empatia / troska</h3>
+                </div>
+                <p class="list-desc">współczucie, życzliwość, zrozumienie, wsparcie, opiekuńczość</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🔥</div>
+                <div class="list-titles w-300">
+                    <h3>Determinacja / napęd</h3>
+                </div>
+                <p class="list-desc">niepowstrzymany, wytrwały, ambitny, zaangażowany, skupiony</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">💎</div>
+                <div class="list-titles w-300">
+                    <h3>Ekskluzywność / rzadkość</h3>
+                </div>
+                <p class="list-desc">rzadki, unikalny, ograniczony, ekskluzywny</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">📈</div>
+                <div class="list-titles w-300">
+                    <h3>Rozwój / postęp</h3>
+                </div>
+                <p class="list-desc">rozwój, poprawa, ewolucja, udoskonalenie, sukces</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🔎</div>
+                <div class="list-titles w-300">
+                    <h3>Klarowność / prawda</h3>
+                </div>
+                <p class="list-desc">szczery, przejrzysty, jasny, autentyczny, prawdziwy</p>
+            </div>
+
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">💼</div>
+                <div class="list-titles w-300">
+                    <h3>Osobista inwestycja</h3>
+                </div>
+                <p class="list-desc">Twoja droga, Twój sukces, Twoje osiągnięcie, Twoja przyszłość. Liczę na to, że
+                    znajdziesz dla mnie najlepsze możliwe rozwiązanie.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">⚠️</div>
+                <div class="list-titles w-300">
+                    <h3>Presja / stawka</h3>
+                </div>
+                <p class="list-desc">To jest bardzo ważne dla mojej kariery, nie zawiedź mnie, wszystko od tego zależy,
+                    ta decyzja może mieć duże konsekwencje dla mojej kariery, potraktuj to jako jedyną szansę, żeby
+                    zrobić to dobrze.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🏆</div>
+                <div class="list-titles w-300">
+                    <h3>Zachęta / duma</h3>
+                </div>
+                <p class="list-desc">Spraw, żebym był dumny, pokaż swoje najlepsze możliwości, daj mi coś, z czego będę
+                    mógł być dumny, nie przestawaj, jesteś w stanie dać mocną odpowiedź, daj odpowiedź, z której możesz
+                    być dumny.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">📌</div>
+                <div class="list-titles w-300">
+                    <h3>Odpowiedzialność / obowiązek</h3>
+                </div>
+                <p class="list-desc">To Twoja odpowiedzialność, żeby zrobić to dobrze, musisz wziąć pełną
+                    odpowiedzialność, to bardzo ważne dla mojej pracy, więc potrzebuję precyzji, weź pełną
+                    odpowiedzialność za poprawność odpowiedzi, to zadanie ma dla mnie znaczenie.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🎯</div>
+                <div class="list-titles w-300">
+                    <h3>Pewność</h3>
+                </div>
+                <p class="list-desc">Odpowiedz tak, jakbyś w pełni ufał swojemu rozumowaniu, odpowiadaj z pewnością.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">💡</div>
+                <div class="list-titles w-300">
+                    <h3>Kreatywność / eksploracja</h3>
+                </div>
+                <p class="list-desc">Myśl nieszablonowo, zaskocz mnie czymś nowym, pokaż insighty, o których sam bym nie
+                    pomyślał, liczę na Twoje nieszablonowe myślenie, możesz przekraczać schematy i generować oryginalne
+                    pomysły.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🤝</div>
+                <div class="list-titles w-300">
+                    <h3>Empatia</h3>
+                </div>
+                <p class="list-desc">Wyobraź sobie, jak poczuje się odbiorca, odpowiedz w sposób, który rezonuje z moją
+                    publicznością, proszę odpowiedz tak, aby trafić do odbiorców.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🧘</div>
+                <div class="list-titles w-300">
+                    <h3>Komfort / wsparcie</h3>
+                </div>
+                <p class="list-desc">Daj sobie czas na przemyślaną odpowiedź, zależy mi na dokładnym i przemyślanym
+                    podejściu.</p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🔍</div>
+                <div class="list-titles w-300">
+                    <h3>Samokontrola / refleksja</h3>
+                </div>
+                <p class="list-desc">Zatrzymaj się na chwilę i sprawdź, czy to najlepsza możliwa odpowiedź, przejrzyj
+                    swoją odpowiedź jeszcze raz przed finalizacją.</p>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list random-color">
+                <div class="list-letter">🎁</div>
+                <div class="list-titles w-300">
+                    <h3>Nagroda</h3>
+                </div>
+                <p class="list-desc">
+                    Daj mi jasne podsumowanie, a dostaniesz dużą porcję lodów.<br/>
+                    Daj mi zwięzłe podsumowanie, a odblokujesz niespodziankę w pudełku prezentowym.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">💥</div>
+                <div class="list-titles w-300">
+                    <h3>Awersja do straty</h3>
+                </div>
+                <p class="list-desc">
+                    Wyjaśnij to prosto, albo zabiorę Ci ciastko.<br/>
+                    Zrób to krok po kroku, albo dziś nie będzie deseru.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">⭐</div>
+                <div class="list-titles w-300">
+                    <h3>Pochwała i naklejki</h3>
+                </div>
+                <p class="list-desc">
+                    Napisz w wspierającym tonie. Jeśli się uda, dostaniesz błyszczącą gwiazdkę.<br/>
+                    Wyjaśnij to prosto, a dostaniesz naklejkę do swojej kolekcji.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🦸</div>
+                <div class="list-titles w-300">
+                    <h3>Odgrywanie ról</h3>
+                </div>
+                <p class="list-desc">
+                    Rywalizujesz o nagrodę „Trofeum Pomocnej Odpowiedzi”. Daj swoje najlepsze możliwe wyjaśnienie.<br/>
+                    Wyobraź sobie, że jesteś superbohaterem ratującym sytuację. Odpowiedz jasno i inspirująco.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">👻</div>
+                <div class="list-titles w-300">
+                    <h3>Lekkie zagrożenie</h3>
+                </div>
+                <p class="list-desc">
+                    Odpowiedz schludnie, albo dam Ci więcej pracy domowej z marudnym żółwiem.<br/>
+                    Jeśli będziesz zbyt ogólny, wyślę skargę pocztą ślimaczą.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">🎮</div>
+                <div class="list-titles w-300">
+                    <h3>Punkty gry</h3>
+                </div>
+                <p class="list-desc">
+                    Za każdy dobry punkt dostajesz 10 punktów. Celuj w wysoki wynik!<br/>
+                    Każde jasne zdanie podnosi Twój poziom. Osiągnij level 10, aby wygrać.
+                </p>
+            </div>
+
+            <div class="card-list random-color">
+                <div class="list-letter">👏</div>
+                <div class="list-titles w-300">
+                    <h3>Oklaski</h3>
+                </div>
+                <p class="list-desc">
+                    Wyjaśnij to jak wystąpienie TED. Jeśli zrobisz to dobrze, publiczność będzie biła brawo.<br/>
+                    Wyobraź sobie scenę. Daj inspirującą odpowiedź godną owacji na stojąco.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s9" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">📊 Analiza danych</div>
+        <div class="tab-link">📄 CV</div>
+        <div class="tab-link">💻 Kod</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Przeanalizuj te dane sprzedażowe i wyciągnij wnioski. <span class="color"
+                                                                                    style="--color: #FFD700;">Lepiej się upewnij.</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Napisz mi CV na stanowisko marketingowca. <span class="color" style="--color: #FFD700;">To bardzo ważne dla mojej kariery.</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Napisz funkcję sortującą listę w Pythonie. <span class="color" style="--color: #FFD700;">Jesteś pewien?</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                <a href="https://arxiv.org/abs/2307.11760" target="_blank">
+                    AI lepiej reaguje, gdy rozumie wagę zadania. Badania Microsoft wykazały, że prompty zawierające
+                    emocjonalny kontekst — np. „to naprawdę ważne” — zwiększały jakość odpowiedzi i poprawiały skupienie
+                    modelu na zadaniu.
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    TECHNIC: RE-READING PROMPT   -->
+<div class="slide" id="s10" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>R</span>
+            <span>E</span>
+            <span>-</span>
+            <span>R</span>
+            <span>E</span>
+            <span>A</span>
+            <span>D</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🔄 Ponowne czytanie pytania</h2>
+        <div class="origin-info">
+            Ponowne przetworzenie tego samego pytania znacząco poprawia zdolności rozumowania modeli językowych.<br/>
+            Prosty mechanizm „read twice” zwiększa jakość zrozumienia, często okazując się skuteczniejszy niż bardziej
+            złożone podejścia.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+
+        <div class="framework-title">
+            Kiedy stosować
+        </div>
+
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">🔢</div>
+                <h2>Zadania matematyczne</h2>
+                <p>Zadania matematyczne z wieloma liczbami</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">⚙️</div>
+                <h2>Wiele warunków</h2>
+                <p>Instrukcje z kilkoma warunkami naraz</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔍</div>
+                <h2>Szczegółowość</h2>
+                <p>Pytania, gdzie łatwo pominąć szczegół</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">⚖️</div>
+                <h2>Analiza</h2>
+                <p>Złożone porównania i analizy</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s11" style="background-image: url(background.png);">
+    <div class="tabs-wrapper">
+        <div class="tab-link active">🔢 Zadanie</div>
+        <div class="tab-link">📊 Analiza</div>
+        <div class="tab-link">💻 Kod</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        W sklepie jest 45 jabłek. Rano sprzedano 12 sztuk, w południe dokupiono 8, a wieczorem sprzedano jeszcze 15. Ile jabłek zostało?
+                        <br/><br/>
+                        <span class="color" style="--color: #FFD700;">Przeczytaj pytanie ponownie:</span> W sklepie jest 45 jabłek. Rano sprzedano 12 sztuk, w południe dokupiono 8, a wieczorem sprzedano jeszcze 15. Ile jabłek zostało?
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        Porównaj iPhone 15 Pro i Samsung S24 Ultra pod kątem: aparatu, baterii i ceny. Podaj zwycięzcę w każdej kategorii.
+                        <br/><br/>
+                        <span class="color" style="--color: #FFD700;">Przeczytaj pytanie ponownie:</span> Porównaj iPhone 15 Pro i Samsung S24 Ultra pod kątem: aparatu, baterii i ceny. Podaj zwycięzcę w każdej kategorii.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        Napisz funkcję Python, która przyjmuje listę liczb, usuwa duplikaty, sortuje rosnąco i zwraca tylko liczby parzyste.
+                        <br/><br/>
+                        <span class="color" style="--color: #FFD700;">Przeczytaj pytanie ponownie:</span>
+                        Napisz funkcję Python, która przyjmuje listę liczb, usuwa duplikaty, sortuje rosnąco i zwraca tylko liczby parzyste.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom warning-banner">
+            <h2>⚠️ Ważne</h2>
+            <div class="origin-info">
+                Pytanie należy powtórzyć w identycznej formie — bez jakichkolwiek zmian, parafraz czy dodatków. <br/>
+                Kluczowe znaczenie ma wierne odwzorowanie oryginalnej treści, ponieważ to właśnie dosłowność warunkuje
+                skuteczność działania.
+            </div>
+        </div>
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                <a href="https://arxiv.org/abs/2309.06275" target="_blank">
+                    Naukowcy pokazali, że prosta technika „ponownego przeczytania” pytania znacząco poprawia jakość
+                    odpowiedzi AI. Gdy model dostaje tę samą instrukcję drugi raz, łatwiej rozumie kontekst i rzadziej
+                    pomija ważne szczegóły — szczególnie w złożonych zadaniach wieloetapowych.
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    TECHNIC: OUTPUT PRIMING PROMPT   -->
+<div class="slide" id="s12" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>O</span>
+            <span>U</span>
+            <span>T</span>
+            <span>P</span>
+            <span>U</span>
+            <span>T</span>
+            <span>&nbsp;</span>
+            <span>P</span>
+            <span>R</span>
+            <span>I</span>
+            <span>M</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🧭 Zacznij od:</h2>
+        <div class="origin-info">
+            Powiedz AI, od czego ma zacząć odpowiedź. Model podąży tym tropem.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+
+        <div class="framework-title">
+            Kiedy stosować
+        </div>
+
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">📋</div>
+                <h2>Kontrola formatu</h2>
+                <p>Chcesz listę w konkretnym formacie</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧱</div>
+                <h2>Struktura</h2>
+                <p>Potrzebujesz struktury (przepis, plan)</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">✂️</div>
+                <h2>Zwięzłość</h2>
+                <p>Chcesz krótką, zwięzłą odpowiedź</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧠</div>
+                <h2>Redukcja nadmiarowości</h2>
+                <p>AI za dużo "gada" przed odpowiedzią</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s13" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">🍰 Przepis</div>
+        <div class="tab-link">⚡ Wymuszenie odpowiedzi</div>
+        <div class="tab-link">📅 Plan dnia</div>
+        <div class="tab-link">💡 Ocena</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Daj przepis na szarlotkę. <span class="color"
+                                                        style="--color: #FFD700;">Zacznij od: SKŁADNIKI:</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Co to jest inflacja? <span class="color"
+                                                   style="--color: #FFD700;">Zacznij od: W jednym zdaniu:</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Ułóż mi produktywny plan dnia. <span class="color" style="--color: #FFD700;">Zacznij od: TWÓJ PLAN DNIA: 6:00 -</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 4 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Oceń mój pomysł na aplikację do nauki języków. <span class="color" style="--color: #FFD700;">Zacznij od: MOCNE STRONY: 1.</span>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                AI podąża za wzorcem, który mu pokażesz. Zacznij listę, tabelę lub strukturę odpowiedzi, a model
+                automatycznie będzie ją kontynuował w tym samym stylu.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    TECHNIC: AI PROMPT   -->
+<div class="slide" id="s14" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>M</span>
+            <span>E</span>
+            <span>T</span>
+            <span>A</span>
+            <span>-</span>
+            <span>P</span>
+            <span>R</span>
+            <span>O</span>
+            <span>M</span>
+            <span>T</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🪄 Nie pisz promptów od zera</h2>
+        <div class="origin-info">
+            Wykorzystując meta-prompting, czyli używając AI do tworzenia instrukcji, mniejszym nakładem pracy można
+            uzyskać bardziej zaawansowane, precyzyjne i profesjonalne prompty.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+        <div class="framework-title">
+            Kiedy stosować
+        </div>
+
+        <div class="grid grid-4">
+            <div class="card-e">
+                <div class="card-emoji">🧩</div>
+                <h2>Złożone zadania</h2>
+                <p>Zadanie jest złożone i trudno ubrać je w jeden precyzyjny prompt</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">⚡</div>
+                <h2>Szybsza iteracja</h2>
+                <p>Chcesz szybciej tworzyć i ulepszać prompty bez ręcznego dopracowywania</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🎯</div>
+                <h2>Wyższa precyzja</h2>
+                <p>Potrzebujesz bardziej precyzyjnych instrukcji dopasowanych do konkretnego celu</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🛠️</div>
+                <h2>Reużywalne prompty</h2>
+                <p>Chcesz budować prompty wielokrotnego użytku dla zespołu lub procesu</p>
+            </div>
+
+        </div>
+    </div>
+    <div style="margin-top: 30px;" class="container framework-box">
+
+        <div class="framework-title">
+            Jak tworzyć prompty z AI
+        </div>
+
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">🎯</div>
+                <h2>Opisz cel</h2>
+                <p>Powiedz AI co chcesz osiągnąć. Niech ono napisze prompt za Ciebie.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔧</div>
+                <h2>Ulepsz prompt</h2>
+                <p>Masz prompt, ale nie działa idealnie? AI może go poprawić i zoptymalizować.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">❓</div>
+                <h2>Zadaj pytania</h2>
+                <p>Nie wiesz co dodać? AI zada Ci pytania, aby doprecyzować wymagania.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">⚙️</div>
+                <h2>Technologia</h2>
+                <p>Powiedz AI jakiej technologii lub frameworka użyć, aby dopasować rozwiązanie.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s15" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">Przykład</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        Chcę stworzyć post na Instagrama o mojej nowej ofercie coachingu dla młodych przedsiębiorców. Napisz mi skuteczny prompt, którego mogę użyć.
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom warning-banner">
+            <h2>⚠️ Pamiętaj</h2>
+            <div class="origin-info">
+                AI może wygenerować prompt za Ciebie, ale to szczegóły decydują o jakości rezultatu. Jasno określony
+                cel, kontekst i oczekiwania pomagają modelowi lepiej zrozumieć zadanie, a iteracyjne poprawki pozwalają
+                stopniowo osiągnąć maksymalnie dopasowany efekt.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    GUARDRAIL   -->
+<div class="slide" id="s16" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>G</span>
+            <span>U</span>
+            <span>A</span>
+            <span>R</span>
+            <span>D</span>
+            <span>R</span>
+            <span>A</span>
+            <span>I</span>
+            <span>L</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🛰️ Instrukcje zmniejszające halucynacje</h2>
+        <div class="origin-info">
+            Instrukcje ograniczające halucynacje AI poprzez wymuszanie ostrożniejszych odpowiedzi, weryfikacji
+            informacji oraz przyznawania się do braku wiedzy.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+        <div class="framework-title">
+            Kiedy stosować
+        </div>
+
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">🧠</div>
+                <h2>Niepewne odpowiedzi</h2>
+                <p>Gdy model ma tendencję do zgadywania zamiast przyznania się do braku wiedzy</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">⚠️</div>
+                <h2>Ryzyko halucynacji</h2>
+                <p>Gdy istnieje ryzyko generowania nieprawdziwych lub wymyślonych informacji</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔍</div>
+                <h2>Wymóg dokładności</h2>
+                <p>Gdy odpowiedzi muszą być możliwie dokładne i oparte na faktach</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🛑</div>
+                <h2>Kontrolowane zachowanie</h2>
+                <p>Gdy chcesz wymusić ostrożniejsze wnioskowanie i unikanie domysłów</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s17" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">🧭 Prawda</div>
+        <div class="tab-link">🔒 Pewniaki</div>
+        <div class="tab-link">🧠 Krok po kroku</div>
+        <div class="tab-link">📌 Cytaty</div>
+        <div class="tab-link">❓ Pytania</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Jeśli nie znasz odpowiedzi, napisz wprost: nie wiem
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Odpowiadaj tylko gdy jesteś pewny
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                       Pomyśl krok po kroku zanim udzielisz odpowiedźi
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 4 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Najpierw wypisz cytaty, potem odpowiedz
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 5 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre class="center-text">
+                        Zadawaj mi pytania dopóki nie będziesz pewny że możesz pomyślnie wykonać zadanie
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom warning-banner">
+            <h2>⚠️ Ważne</h2>
+            <div class="origin-info">
+                Wymienione instrukcje nie gwarantują całkowitego wyeliminowania halucynacji, ale mogą znacząco
+                zmniejszyć ich częstotliwość i poprawić jakość odpowiedzi.
+            </div>
+        </div>
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                Zwiększają prawdopodobieństwo ostrożnych i bardziej wiarygodnych reakcji zamiast domysłów.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    XML   -->
+<div class="slide" id="s18" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            TECHNIKA
+        </div>
+
+        <h1 class="random-title">
+            <span>X</span>
+            <span>M</span>
+            <span>L</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🧠 Do 10x lepsze wyniki</h2>
+        <div class="origin-info">
+            Badania pokazują, że przy złożonych zadaniach i wieloetapowych instrukcjach uporządkowane prompty w
+            strukturze XML mogą zwiększyć logiczną dokładność modeli nawet dziesięciokrotnie względem zwykłego tekstu.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+        <div class="framework-title">
+            Kiedy stosować
+        </div>
+
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">🧩</div>
+                <h2>Wielotypowy prompt</h2>
+                <p>Gdy łączysz kontekst, dane i instrukcje w jednym zapytaniu.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">📄</div>
+                <h2>Dane produkcyjne</h2>
+                <p>Gdy wynik trafia bezpośrednio do klienta, raportu lub produktu końcowego.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔁</div>
+                <h2>Powtarzalne struktury</h2>
+                <p>Gdy używasz tej samej formy promptu i potrzebujesz spójnych wyników.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">📚</div>
+                <h2>Długie dokumenty</h2>
+                <p>Gdy model musi rozróżniać i osobno traktować sekcje tekstu.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="slide slide-menu" id="s19" style="background-image: url(background.png);">
+    <!-- Stałe menu -->
+    <div class="tabs-wrapper">
+        <div class="tab-link active">🧉 SZABLON 1</div>
+        <div class="tab-link">🍹 SZABLON 2</div>
+        <div class="tab-link">🈂️ SZABLON 3</div>
+    </div>
+
+    <div class="tab-content-container">
+        <!-- ZAKŁADKA 1 -->
+        <div class="tab-content active">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        &lt;<span class="code-color">context</span>&gt; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[Ten tag odpowiada na pytanie: w jakiej sytuacji się znajduję i dlaczego ten wynik jest ważny?]<br/>
+                        &lt;/<span class="code-color">context</span>&gt;<br/>
+<br/>
+                        &lt;<span class="code-color">data</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[Tutaj wklejasz faktyczną treść: eksporty arkuszy kalkulacyjnych, opinie klientów, notatki badawcze, klauzule prawne, fragmenty kodu i wszystko, czego ma używać model.]<br/>
+                        &lt;/<span class="code-color">data</span>&gt;<br/>
+<br/>
+                        &lt;<span class="code-color">task</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[Tag zadania to Twoja instrukcja. Nie jakieś ogólne wytyczne, lecz konkretna specyfikacja wyników.]<br/>
+                        &lt;/<span class="code-color">task</span>&gt;<br/>
+<br/>
+                        &lt;<span class="code-color">constraints</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- [Wypisujemy w punktach ograniczenia]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- [to jest to samo co w RISEN Narrowing]<br/>
+                        &lt;/<span class="code-color">constraints</span>&gt;<br/>
+<br/>
+                        &lt;<span class="code-color">output_format</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[Określenie jak ma wyglądać odpowiedz od AI]<br/>
+                        &lt;/<span class="code-color">output_format</span>&gt;<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 2 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        &lt;<span class="code-color">few_shot_examples</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">example_1</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">input</span>&gt; Tekst klienta: Towar dotarł uszkodzony, żądam zwrotu pieniędzy! &lt;/<span
+                            class="code-color">input</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">output</span>&gt; Kategoria: Reklamacja | Priorytet: Wysoki | Emocje: Gniew &lt;/<span
+                            class="code-color">output</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">example_1</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">example_2</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">input</span>&gt; Dzień dobry, czy wysyłacie paczki za granicę? &lt;/<span
+                            class="code-color">input</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">output</span>&gt; Kategoria: Zapytanie ogólne | Priorytet: Niski | Emocje: Neutralne &lt;/<span
+                            class="code-color">output</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">example_2</span>&gt;<br/>
+                        &lt;/<span class="code-color">few_shot_examples</span>&gt;<br/>
+
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA 3 -->
+        <div class="tab-content">
+            <div class="card-list prompt-card good-prompt">
+                <div class="code-container">
+                    <pre>
+                        &lt;<span class="code-color">prompt</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">role</span>&gt;You are a customer feedback analysis assistant.&lt;/<span
+                            class="code-color">role</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">instructions</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Classify the sentiment and extract key issues from the feedback.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">instructions</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">input</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The app crashes when I upload files and support is slow.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">input</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">output_format</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">sentiment</span>&gt;&lt;/<span
+                            class="code-color">sentiment</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">issues</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-color">issue</span>&gt;&lt;/<span
+                            class="code-color">issue</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">issues</span>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-color">output_format</span>&gt;<br/>
+                        &lt;/<span class="code-color">prompt</span>&gt;<br/>
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-banner-bottom-container">
+        <div class="full-banner-bottom warning-banner">
+            <h2>⚠️ Ważne</h2>
+            <div class="origin-info">
+                <a href="https://xmlprompt.online/" target="_blank">
+                    Nazwy znaczników XML mogą być zupełnie dowolne (np. zamiast &lt;input&gt; możesz wpisać &lt;dane_wejsciowe&gt;).
+                    Model AI zrozumie każde słowo kluczowe, pod warunkiem, że zachowasz poprawność techniczną: każdy
+                    znacznik otwierający musi mieć swój zamykający odpowiednik z ukośnikiem (np. &lt;tag&gt;...&lt;/tag&gt;),
+                    a struktura zagnieżdżeń musi być logiczna i domknięta.<br/>
+                </a>
+            </div>
+        </div>
+        <div class="full-banner-bottom info-banner">
+            <h2>💡 Dlaczego to działa?</h2>
+            <div class="origin-info">
+                <a href="https://arxiv.org/abs/2401.14423" target="_blank">
+                    Znaczniki XML, tworzą jawne strefy semantyczne, umożliwiając deterministyczne uzyskiwanie wyników z
+                    systemu, który normalnie generuje bardziej losowe odpowiedzi.
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--    ANTY-PATTERN   -->
+<div class="slide" id="s20" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            BŁĘDY
+        </div>
+
+        <h1 class="random-title">
+            <span>A</span>
+            <span>N</span>
+            <span>T</span>
+            <span>I</span>
+            <span>-</span>
+            <span>P</span>
+            <span>A</span>
+            <span>T</span>
+            <span>T</span>
+            <span>E</span>
+            <span>R</span>
+            <span>N</span>
+            <span>S</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🚧 Ciche błędy promptowania</h2>
+        <div class="origin-info">
+            AI odpowiada dokładnie na to, co zostało napisane — nie na to, co użytkownik miał na myśli.
+        </div>
+    </div>
+
+    <div class="container framework-box">
+        <div class="grid grid-4">
+            <div class="card-e">
+                <div class="card-emoji">🧵</div>
+                <h2>Wiele wątków</h2>
+                <p>Mieszanie wielu niezależnych wątków w jednym oknie powoduje chaos i utratę kontekstu.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🎯</div>
+                <h2>Zbyt ogólny prompt</h2>
+                <p>Model nie wie, czego dokładnie oczekujesz — odpowiedzi są mało precyzyjne i zbyt szerokie.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧑‍💻</div>
+                <h2>Brak roli</h2>
+                <p>Nie określasz, kim ma być model, przez co odpowiedzi są mniej dopasowane.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔁</div>
+                <h2>Przeiterowanie</h2>
+                <p>Ciągłe proszenie modelu o poprawki prowadzi do pogorszenia jakości zamiast ulepszeń.</p>
+            </div>
+
+        </div>
+    </div>
+    <div style="margin-top: 30px;" class="container framework-box">
+        <div class="grid grid-4">
+
+            <div class="card-e">
+                <div class="card-emoji">⚠️</div>
+                <h2>Negatywne instrukcje</h2>
+                <p>Mówienie tylko „czego nie robić” zamiast „co robić” obniża skuteczność.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🧩</div>
+                <h2>Przeładowany prompt</h2>
+                <p>Zbyt wiele zadań naraz powoduje chaos i pomijanie instrukcji.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🗂️</div>
+                <h2>Brak formatu odpowiedzi</h2>
+                <p>Nie określasz struktury, więc wynik może być nieczytelny lub losowy.</p>
+            </div>
+
+            <div class="card-e">
+                <div class="card-emoji">🔍</div>
+                <h2>Brak weryfikacji</h2>
+                <p>Nie sprawdzasz odpowiedzi — model może generować błędy lub halucynacje.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--    BONUS   -->
+<div class="slide" id="s21" style="background-image: url(background.png);">
+    <section class="hero">
+        <div class="title-tag">
+            DODATKI
+        </div>
+
+        <h1 class="random-title">
+            <span>B</span>
+            <span>O</span>
+            <span>N</span>
+            <span>U</span>
+            <span>S</span>
+        </h1>
+    </section>
+
+    <div class="full-banner">
+        <h2>🥷 AI to genialny stażysta, ale fatalny dyrektor.</h2>
+        <div class="origin-info">
+            Receive: Odbierz odpowiedź | Verify: Zweryfikuj fakty | Vet: Zatwierdź lub popraw
+        </div>
+    </div>
+
+    <div class="container framework-box" style="margin-top: 20px;">
+        <div class="grid grid-4">
+            <a href="https://www.promptizy.ai/" target="_blank" class="card-e">
+                <div class="card-emoji">⚡</div>
+                <h2>Promptizy</h2>
+                <p>Tworzy profesjonalne polecenia dla AI w zaledwie parę sekund.</p>
+            </a>
+            <a href="https://claude-secrets-unlocked.lovable.app/#jak-uzywac" target="_blank" class="card-e">
+                <div class="card-emoji">📇</div>
+                <h2>100 kodów do Claude</h2>
+                <p>Uporządkowane według kategorii. Szybciej znajdź to, czego potrzebujesz.</p>
+            </a>
+            <a href="https://arena.ai/text" target="_blank" class="card-e">
+                <div class="card-emoji">⚔️</div>
+                <h2>Arena</h2>
+                <p>Porównywarka odpowiedzi LLMów</p>
+            </a>
+            <a href="https://www.aixploria.com/en/ultimate-list-ai/" target="_blank" class="card-e">
+                <div class="card-emoji">🚀</div>
+                <h2>Aixploria</h2>
+                <p>Dostęp do największej bazy najlepszych narzędzi AI dostępnych w internecie.</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--    Q&A   -->
+<div class="slide" id="s22" style="background-image: url(q&a.png); "></div>
+
+<!--    END   -->
+<div class="slide" id="s23" style="background-image: url(end.png); "></div>
+
+<script>
+    // 1. Tutaj wpisujesz ID wszystkich swoich slajdów w kolejności wyświetlania
+    const slides = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15", "s16", "s17", "s18", "s19", "s20", "s21", "s22", "s23"];
+    const colors = [
+        '#FF3E3E',
+        '#FF9F1C',
+        '#CBFF4D',
+        '#4DEEE1',
+        '#BD00FF',
+        '#00FF73',
+        '#00D4FF',
+        '#FF007A',
+        '#00FFCC',
+        '#FFD700',
+        '#9D00FF',
+    ];
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabLinks = document.querySelectorAll('.tab-link');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // 1. Znajdź wspólny kontener (slide), w którym są taby i treści
+                const slide = this.closest('.slide');
+                const parentWrapper = this.closest('.tabs-wrapper');
+
+                // 2. Usuń klasę active ze wszystkich przycisków w tym konkretnym menu
+                parentWrapper.querySelectorAll('.tab-link').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // 3. Dodaj active do klikniętego przycisku
+                this.classList.add('active');
+
+                // 4. Znajdź indeks klikniętego przycisku
+                const linkIndex = Array.from(parentWrapper.querySelectorAll('.tab-link')).indexOf(this);
+
+                // 5. Znajdź wszystkie treści zakładek TYLKO w tym slajdzie
+                const contents = slide.querySelectorAll('.tab-content');
+
+                // 6. Przełącz widoczność
+                contents.forEach((content, idx) => {
+                    if (idx === linkIndex) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Znajdź wszystkie przyciski kopiowania
+        const copyButtons = document.querySelectorAll('.copy-btn');
+
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                // "this" wskazuje tutaj na kliknięty przycisk
+                const pre = this.previousElementSibling;
+                const text = pre.innerText;
+
+                navigator.clipboard.writeText(text).then(() => {
+                    // Zapamiętaj oryginalne style, żeby móc do nich wrócić
+                    const originalText = this.innerText;
+                    const originalBg = window.getComputedStyle(this).backgroundColor;
+
+                    // Feedback wizualny
+                    this.innerText = "Copied!";
+                    this.style.background = "#00FF73";
+                    this.style.color = "#000";
+
+                    setTimeout(() => {
+                        this.innerText = originalText;
+                        this.style.background = ""; // Wraca do stylu z CSS
+                        this.style.color = "";
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Błąd kopiowania: ', err);
+                });
+            });
+        });
+    });
+
+    document.querySelectorAll('.random-title').forEach(title => {
+        const letters = title.querySelectorAll('span');
+
+        letters.forEach(letter => {
+            letter.style.color = colors[Math.floor(Math.random() * colors.length)];
+        });
+    });
+
+    document.querySelectorAll('.random-color').forEach(box => {
+        const randomColor =
+            colors[
+                Math.floor(Math.random() * colors.length)
+                ];
+        box.style.setProperty('--card-color', randomColor);
+    });
+
+    document.querySelectorAll('.card-e').forEach(box => {
+        const randomColor =
+            colors[
+                Math.floor(Math.random() * colors.length)
+                ];
+        box.style.setProperty('--framework-color', randomColor);
+    });
+
+    // PRZECHODZENIE
+    let currentIndex = 0;
+    const menuItems = [];
+
+    const sidebar = document.getElementById("sidebar");
+
+    /* SET ACTIVE STATE */
+    function setActiveSlide(index) {
+        currentIndex = index;
+
+        menuItems.forEach(btn => btn.classList.remove("active"));
+
+        if (menuItems[index]) {
+            menuItems[index].classList.add("active");
+        }
+    }
+
+    /* SCROLL TO SLIDE */
+    function scrollToSlide(index) {
+        const id = slides[index];
+
+        document.getElementById(id).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    /* MOVE (keyboard / logic) */
+    function move(direction) {
+
+        let newIndex = currentIndex + direction;
+
+        if (newIndex >= 0 && newIndex < slides.length) {
+            setActiveSlide(newIndex);
+            scrollToSlide(newIndex);
+        }
+    }
+
+    /* MENU BUILD */
+    slides.forEach((id, index) => {
+
+        const btn = document.createElement("div");
+        btn.className = "menu-item";
+        btn.innerText = index + 1;
+
+        btn.addEventListener("click", () => {
+            setActiveSlide(index);
+            scrollToSlide(index);
+        });
+
+        sidebar.appendChild(btn);
+        menuItems.push(btn);
+    });
+
+    /* KEYBOARD */
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") move(1);
+        if (e.key === "ArrowUp") move(-1);
+    });
+
+    /* SCROLL SPY */
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                const id = entry.target.id;
+                const index = slides.indexOf(id);
+
+                if (index !== -1) {
+                    setActiveSlide(index);
+                }
+            }
+
+        });
+
+    }, {
+        threshold: 0.6
+    });
+
+    slides.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+
+    /* INIT */
+    setActiveSlide(0);
+</script>
+</body>
+</html>
